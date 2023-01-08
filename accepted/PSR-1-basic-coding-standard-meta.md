@@ -22,7 +22,7 @@ neler olduğunu kapsar. Bu meta belge, belge kabul edildikten sonra eklenmiştir
 
 * Paul M. Jones
 
-### 2.2 Türkçe Tercüme
+### 2.2 Türkçe'ye Çeviri
 
 * [Evren Bal][@benevrenbal]
 
