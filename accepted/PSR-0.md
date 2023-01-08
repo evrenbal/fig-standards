@@ -1,4 +1,4 @@
-Otomatik yükleme standartı
+Otomatik Yükleme Standartı
 ==========================
 
 > **Kullanımdan kalktı** - PSR-0 21.10.2014 tarihi itibarı ile kullanımdan
