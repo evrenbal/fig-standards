@@ -6,8 +6,8 @@ kaldırıldı. Artık alternatif olarak [PSR-4] önerilmektedir.
 
 [PSR-4]: https://www.php-fig.org/psr/psr-4/
 
-## 0. Çeviri
-### 0.1 Çeviri Hakkında
+# Çeviri
+## Çeviri Hakkında
 Resmi olmayan bu çeviri php-fig standartları için Türkçe kaynak oluşturmak adına
 gönüllülük esaslı hazırlanmıştır. Çeviri kaynaklı hatalar olabileceği veya
 çeviri yapıldıktan sonra orijinal dosyanın değiştirilmiş olabileceği dikkate
