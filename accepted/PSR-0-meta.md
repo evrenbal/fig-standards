@@ -15,13 +15,13 @@ PSR-0 resmi FIG yapısından önceki bir tarihte yayınlanmıştır ve otomatik
 yükleyicilerin birlikte çalışabilirliği için bir standart tanımlar. Yerini PSR-4
 almıştır. Bu meta dokümanı PSR kullanımdan kalktıktan sonra eklenmiştir.
 
-## 2. İlgili Kişiler
+## 2. Kişiler
 
 ### 2.1 Editör
 
 * Matthew Weier O'Phinney
 
-### 2.2 Tercüme
+### 2.2 Türkçe Tercüme
 
 * [Evren Bal][@benevrenbal]
 
