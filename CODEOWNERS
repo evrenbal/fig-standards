@@ -1,0 +1,6 @@
+* @php-fig/secretaries
+/proposed/security* @php-fig/psr-9-10
+/proposed/phpdoc* @php-fig/psr-5
+/proposed/clock* @php-fig/psr-20
+/proposed/internationalization* @php-fig/psr-21
+/proposed/tracing* @php-fig/psr-22
