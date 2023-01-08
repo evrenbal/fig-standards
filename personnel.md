@@ -1,21 +1,30 @@
-# Personnel
+# Tercüme Hakkında
+Resmi olmayan bu çeviri php-fig standartları için Türkçe kaynak oluşturmak adına
+gönüllülük esaslı hazırlanmıştır. Çeviri kaynaklı hatalar olabileceği veya
+çeviri yapıldıktan sonra orijinal dosyanın değiştirilmiş olabileceği dikkate
+alınmalıdır. Orijinal dildeki dokümanlar için php-fig tarafından yönetilen
+[orijinal depo][figstandards] incelenmelidir.
 
-## Current
+# Personel
 
-### Secretaries
+## Mevcut
 
-| Name                                  | Term                    |
+### Sekreterler
+
+| Adı                                   | Dönem                   |
 |---------------------------------------|-------------------------|
 | Alessandro Lai ([@AlessandroLai])     | 2017-11-12 - 2024-08-31 |
 | Vincent de Lau ([@vdelau])            | 2021-06-25 - 2023-05-30 |
 | Steve Winter ([@SteveWinterNZ])       | 2022-01-30 - 2024-01-28 |
 
-Feel free to contact the secretaries at info AT php-fig.org. For more information on the secretaries' role, see the [bylaws](https://www.php-fig.org/bylaws/mission-and-structure/#secretaries).
+info AT php-fig.org adresini kullanarak sekreterlere ulaşmaya çekinmeyin.
+Sekreterler rolü hakkında daha fazla bilgi almak için [tüzüğü](https://www.php-fig.org/bylaws/mission-and-structure/#secretaries)
+inceleyin.
 
 
-### Core Committee Members
+### Ama Kurul Üyeleri
 
-| Name                                | Term                    |
+| Adı                                 | Dönem                   |
 |-------------------------------------|-------------------------|
 | Larry Garfield ([@Crell])           | 2016-12-24 - 2023-05-30 |
 | Matthew Weier O'Phinney ([@mwop])   | 2016-12-24 - 2023-05-30 |
@@ -30,9 +39,9 @@ Feel free to contact the secretaries at info AT php-fig.org. For more informatio
 | Jaap van Otterdijk ([@jaapio])      | 2022-08-28 - 2024-08-28 |
 | Navarr Barnier ([@navarr])          | 2022-08-28 - 2024-08-28 |
 
-### Member Projects
+### Üye Projeler
 
-| Project                           | Representative                        |
+| Proje                             | Temsilci                              |
 |-----------------------------------|---------------------------------------|
 | [AzuraCast]                       | Buster Neece ([@BusterNeece])         |
 | [CakePHP]                         | Larry Masters ([@PhpNut])             |
@@ -73,11 +82,11 @@ Feel free to contact the secretaries at info AT php-fig.org. For more informatio
 | [Zikula]                          | Shefik Macauley ([@shefik_info])      |
 
 
-## Past
+## Geçmiş
 
-### Former Secretaries
+### Eski Sekreterler
 
-| Name                                  | Term                    |
+| Adı                                   | Dönem                   |
 |---------------------------------------|-------------------------|
 | Gary Hockin ([@GeeH])                 | 2016-01-31 - 2016-01-31 |
 | Joe Ferguson ([@joepferguson])        | 2016-01-31 - 2016-06-29 |
@@ -90,9 +99,9 @@ Feel free to contact the secretaries at info AT php-fig.org. For more informatio
 | Asmir Mustafic ([@goetas_asmir])      | 2019-05-26 - 2021-05-30 |
 | Buster Neece ([@BusterNeece])         | 2020-01-25 - 2022-01-31 |
 
-### Former Core Committee Members
+### Eski Ana Kurul Üyeleri
 
-| Name                                  | Term                    |
+| Adı                                   | Dönem                   |
 |---------------------------------------|-------------------------|
 | Graham Hoefer ([@greydnls])           | 2016-12-24 - 2018-01-31 |
 | Gary Hockin ([@GeeH])                 | 2016-12-24 - 2018-04-04 |
@@ -107,9 +116,9 @@ Feel free to contact the secretaries at info AT php-fig.org. For more informatio
 | Ben Edmunds ([@benedmunds])           | 2020-08-31 - 2022-08-31 |
 | Woody Gilk ([@shadowhand])            | 2019-05-26 - 2022-08-31 |
 
-### Former Member Projects
+### Eski Üye Projeler
 
-| Project                                   | Representative                        |
+| Projeler                                  | Temsilci                              |
 |-------------------------------------------|---------------------------------------|
 | [Aura] and [Solar]                        | Paul M. Jones ([@pmjones])            |
 | [Assetic]                                 | Kris Wallsmith ([@kriswallsmith])     |
@@ -123,6 +132,8 @@ Feel free to contact the secretaries at info AT php-fig.org. For more informatio
 | [sabre/dav]                               | Evert Pot ([@evertp])                 |
 | [Symfony]                                 | Fabien Potencier ([@fabpot])          |
 | [Drupal]                                  | *vacant*                              |
+
+[figstandards]: https://github.com/php-fig/
 
 [@adamculp]: https://twitter.com/adamculp
 [@alekitto]: https://twitter.com/alekitto
@@ -247,4 +258,3 @@ Feel free to contact the secretaries at info AT php-fig.org. For more informatio
 [The League of Extraordinary Packages]: http://thephpleague.com
 [Wikibase]: http://www.wikiba.se
 [Yii framework]: http://www.yiiframework.com
-[Zikula]: https://github.com/zikula
