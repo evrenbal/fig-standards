@@ -1,27 +1,47 @@
-# PSR-2 Meta Document
+# PSR-2 Meta Dokümanı
 
-## 1. Summary
+## 0. Çeviri
 
-The intent of this guide is to reduce cognitive friction when scanning code from different authors. It does so
-by enumerating a shared set of rules and expectations about how to format PHP code.
+### 0.1 Çeviri Hakkında
+Resmi olmayan bu çeviri php-fig standartları için Türkçe kaynak oluşturmak adına
+gönüllülük esaslı hazırlanmıştır. Çeviri kaynaklı hatalar olabileceği veya
+çeviri yapıldıktan sonra orijinal dosyanın değiştirilmiş olabileceği dikkate
+alınmalıdır. Orijinal dildeki dokümanlar için php-fig tarafından yönetilen
+[orijinal depo][figstandards] incelenmelidir.
 
-The style rules herein are derived from commonalities among the various member projects. When various authors
-collaborate across multiple projects, it helps to have one set of guidelines to be used among all those
-projects. Thus, the benefit of this guide is not in the rules themselves, but in the sharing of those rules.
+[figstandards]: https://github.com/php-fig/
 
-## 2. Votes
+### 0.1 Çeviri Notları
+- `Specification` kelimesi günlük konuşma dilinde spesifikasyon olarak
+kullanıldığı için `şartname`, `tarif` vb. bir karşılık kullanılmamış,
+spesifikasyon olarak bırakıldığında daha doğru anlaşılacağı düşünülmüştür.
 
-- **Acceptance Vote:** [ML](https://groups.google.com/d/msg/php-fig/c-QVvnZdMQ0/TdDMdzKFpdIJ)
+## 1. Özet
 
-## 3. Errata
+Bu rehberin amacı farklı yazarların kodlarının taranması sırasında bilişsel
+sürtünmeyi azaltmaktır. Bunu, PHP kodunun biçimlendirilmesine dair bir takım
+paylaşılan kurallar ve beklentiler sıralayarak yapar.
 
-### 3.1 - Multi-line Arguments (09/08/2013)
+Buradaki stil kuralları, çeşitli üye projeler arasındaki ortak yönlerden
+türetilmiştir. Çeşitli yazarlar birden fazla projede işbirliği yaptığında, tüm
+bu projeler arasında kullanılacak bir kılavuz setinin olması yardımcı olur. Bu
+nedenle, bu kılavuzun yararı kuralların kendisinde değil, bu kuralların
+paylaşılmasındadır.
 
-Using one or more multi-line arguments (i.e: arrays or anonymous functions) does not constitute
-splitting the argument list itself, therefore Section 4.6 is not automatically enforced. Arrays and anonymous
-functions are able to span multiple lines.
+## 2. Oylama
 
-The following examples are perfectly valid in PSR-2:
+- **Kabul Oylaması:** [ML](https://groups.google.com/d/msg/php-fig/c-QVvnZdMQ0/TdDMdzKFpdIJ)
+
+## 3. Yazım Hataları ve Düzeltmeler
+
+### 3.1 - Çok satırlı argümanlar (09/08/2013)
+
+Birden fazla satırdan oluşan argümanlar kullanmak ( örneğin diziler veya anonim
+fonksiyonlar) argüman listesini bölmek anlamına gelmez, bu nedenle bölüm 4.6
+otomatik olarak zorunlu hale gelir. Diziler ve anonim fonksiyonlar birden fazla
+satıra bölünebilirler.
+
+Aşağıdaki örnekler PSR-2 açısından mükkemmel doğrulukta değerlendirilir.
 
 ```php
 <?php
@@ -30,18 +50,23 @@ somefunction($foo, $bar, [
 ], $baz);
 
 $app->get('/hello/{name}', function ($name) use ($app) {
-    return 'Hello '.$app->escape($name);
+    return 'Merhaba '.$app->escape($name);
 });
 ```
 
-### 3.2 - Extending Multiple Interfaces (10/17/2013)
+### 3.2 - Birden Çok Aayüzü genişletme (10/17/2013)
 
-When extending multiple interfaces, the list of `extends` should be treated the same as a list
-of `implements`, as declared in Section 4.1.
+Birden fazla arayüz genişletilirken `extends` listesi bölüm 4.1'de açıklanan 
+`implements` listesi gibi değerlendirilir.
 
-## 4. People
+## 4. Kişiler
 
-### 4.1 Editor
+### 4.1 Editör
 
 * Paul M. Jones
 
+### 4.2 Türkçe'ye Çeviri
+
+* [Evren Bal][@benevrenbal]
+
+[@benevrenbal]: https://www.linkedin.com/in/evrenbal

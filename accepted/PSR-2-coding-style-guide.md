@@ -1,64 +1,82 @@
-# Coding Style Guide
+# Kodlama Stil Rehberi
 
-> **Deprecated** - As of 2019-08-10 PSR-2 has been marked as deprecated. [PSR-12] is now recommended
-as an alternative.
+> **Kullanımdan Kaldırıldı** - PSR-2 2019-08-10 itibarı ile kullanımdan
+kaldırıldı olarak işaretlenmiştir. Artık alternatif olarak [PSR-12]
+önerilmektedir.
 
-[PSR-12]: https://www.php-fig.org/psr/psr-12/
+[PSR-12]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-12.md
 
-This guide extends and expands on [PSR-1], the basic coding standard.
+Bu spesifikasyon [PSR-1], temel kodlama standartını büyütür ve genişletir.
 
-The intent of this guide is to reduce cognitive friction when scanning code
-from different authors. It does so by enumerating a shared set of rules and
-expectations about how to format PHP code.
+Bu rehberin amacı farklı yazarların kodlarının taranması sırasında bilişsel
+sürtünmeyi azaltmaktır. Bunu, PHP kodunun biçimlendirilmesine dair bir takım
+paylaşılan kurallar ve beklentiler sıralayarak yapar.
 
-The style rules herein are derived from commonalities among the various member
-projects. When various authors collaborate across multiple projects, it helps
-to have one set of guidelines to be used among all those projects. Thus, the
-benefit of this guide is not in the rules themselves, but in the sharing of
-those rules.
+Buradaki stil kuralları, çeşitli üye projeler arasındaki ortak yönlerden
+türetilmiştir. Çeşitli yazarlar birden fazla projede işbirliği yaptığında, tüm
+bu projeler arasında kullanılacak bir kılavuz setinin olması yardımcı olur. Bu
+nedenle, bu kılavuzun yararı kuralların kendisinde değil, bu kuralların
+paylaşılmasındadır.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in [RFC 2119].
+[PSR-0]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-0.md
+[PSR-1]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
 
-[RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
-[PSR-0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
-[PSR-1]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
+## 0. Çeviri
 
-## 1. Overview
+### 0.1 Çeviri Hakkında
+Resmi olmayan bu çeviri php-fig standartları için Türkçe kaynak oluşturmak adına
+gönüllülük esaslı hazırlanmıştır. Çeviri kaynaklı hatalar olabileceği veya
+çeviri yapıldıktan sonra orijinal dosyanın değiştirilmiş olabileceği dikkate
+alınmalıdır. Orijinal dildeki dokümanlar için php-fig tarafından yönetilen
+[orijinal depo][figstandards] incelenmelidir.
 
-- Code MUST follow a "coding style guide" PSR [[PSR-1]].
+[figstandards]: https://github.com/php-fig/
 
-- Code MUST use 4 spaces for indenting, not tabs.
+### 0.1 Çeviri Notları
+- `Specification` kelimesi günlük konuşma dilinde spesifikasyon olarak
+  kullanıldığı için `şartname`, `tarif` vb. bir karşılık kullanılmamış,
+  spesifikasyon olarak bırakıldığında daha doğru anlaşılacağı düşünülmüştür.
+- Php anahtar kelimesi de olarak kullanılan, Türkçe'ye alan adı olarak
+  çevrilebilecek `Namespace` terimi, metin içerisinde Türkçe'ye çevrilmeden asıl
+  haliyle kullanılacaktır.
+- Programlamadaki `Closure` ifadesinin Türkçe karşılığı anlaşılır olmayacağından
+  çeviri yapılmamıştır.
 
-- There MUST NOT be a hard limit on line length; the soft limit MUST be 120
-  characters; lines SHOULD be 80 characters or less.
+## 1. Genel Bakış
 
-- There MUST be one blank line after the `namespace` declaration, and there
-  MUST be one blank line after the block of `use` declarations.
+- Kodun "kodlama standartı rehberi" PSR [[PSR-1]]'e uygun OLMASI ZORUNLUDUR.
 
-- Opening braces for classes MUST go on the next line, and closing braces MUST
-  go on the next line after the body.
+- Kodda girinti için sekme karakteri değil, 4 boşluk KULLANMASI ZORUNLUDUR.
 
-- Opening braces for methods MUST go on the next line, and closing braces MUST
-  go on the next line after the body.
+- Satır uzunluğuna ilişkin sabit bir sınır OLMAMASI ZORUNLUDUR. Esnek limitin
+  120 karakter OLMASI ZORUNLUDUR; satır uzunluğunun 80 karakter veya altında
+  OLMASI ÖNERİLİR.
 
-- Visibility MUST be declared on all properties and methods; `abstract` and
-  `final` MUST be declared before the visibility; `static` MUST be declared
-  after the visibility.
+- `namespace` tanımından ve `use` tanımları bloğundan sonra bir satır boşluk
+  OLMASI ZORUNLUDUR.
 
-- Control structure keywords MUST have one space after them; method and
-  function calls MUST NOT.
+- Sınıflar için açılış süslü parantezlerinin sonraki satırda, kapanış süslü
+  parantezinin ise içerikten hemen sonraki satırda OLMASI ZORUNLUDUR.
 
-- Opening braces for control structures MUST go on the same line, and closing
-  braces MUST go on the next line after the body.
+- Metotlar için açılış süslü parantezlerinin sonraki satırda, kapanış süslü
+  parantezlerinin içerikten sonraki satırda OLMALARI ZORUNLUDUR.
 
-- Opening parentheses for control structures MUST NOT have a space after them,
-  and closing parentheses for control structures MUST NOT have a space before.
+- Tüm özellik ve metotlar için görünürlük TANIMLANMASI ZORUNLUDUR. `abstract` ve
+  `final` tanımlarının görünürlükten önce yapılması, `static` tanımının
+  görünürlükten sonra YAPILMASI ZORUNLUDUR.
 
-### 1.1. Example
+- Kontrol yapısı kelimelerinden sonra bir boşluk olması, metot ve fonksiyon
+  çağrılarından sonra OLMAMASI ZORUNLUDUR.
 
-This example encompasses some of the rules below as a quick overview:
+- Kontrol yapılarının açılış süslü parantezlerinin aynı satırda OLMASI, kapanış
+  süslü parantezinin içerikten sonraki satırda OLMASI ZORUNLUDUR.
+
+- Kontrol ypaılarının açılış parantezlerinden sonra, kapanış parantezlerinden
+  önce boşluk OLMAMASI ZORUNLUDUR.
+
+### 1.1. Örnek
+
+Aşağıdaki örnek, hızlı bir genel bakış amacıyla kurallardan bazılarını gösterir.
 
 ```php
 <?php
@@ -83,71 +101,72 @@ class Foo extends Bar implements FooInterface
 
     final public static function bar()
     {
-        // method body
+        // metot gövdesi
     }
 }
 ```
 
-## 2. General
+## 2. Genel
 
-### 2.1. Basic Coding Standard
+### 2.1. Temel Kodlama Standartı
 
-Code MUST follow all rules outlined in [PSR-1].
+Kod [PSR-1]'de belirtilen tüm kurallara uymalıdır.
 
-### 2.2. Files
+### 2.2. Dosyalar
 
-All PHP files MUST use the Unix LF (linefeed) line ending.
+Tüm PHP dpsyaları Unix LF (linefeed) satır sonlandırmasını KULLANMASI ZORUNLUDUR.
 
-All PHP files MUST end with a single blank line.
+Tüm PHP dosyalarının boş bir satırla BİTMESİ ZORUNLUDUR.
 
-The closing `?>` tag MUST be omitted from files containing only PHP.
+Sadece PHP içeren dosyalarda `?>` kapanış etiketinin OLMAMASI ZORUNLUDUR.
 
-### 2.3. Lines
+### 2.3. Satırlar
 
-There MUST NOT be a hard limit on line length.
+Satır uzunluğu ile ilgili sabit bir sınır OLMAMASI ZORUNLUDUR.
 
-The soft limit on line length MUST be 120 characters; automated style checkers
-MUST warn but MUST NOT error at the soft limit.
+Satır uzunluğu esnek limitinin 120 karakter OLMASI ZORUNLUDUR. Otomatik stil
+kontrolcülerinin esnek limitte hata değil uyarı VERMELERİ ZORUNLUDUR.
 
-Lines SHOULD NOT be longer than 80 characters; lines longer than that SHOULD
-be split into multiple subsequent lines of no more than 80 characters each.
+Satırların 80 karakterden uzun OLMAMASI ÖNERİLİR; daha uzun satırların her biri
+80 satırdan uzun olmayan satırlara BÖÜLNMESİ ÖNERİLİR.
 
-There MUST NOT be trailing whitespace at the end of non-blank lines.
+Boş olmayan satırların sonunda takip eden boşluk karakteri OLMAMASI ZORUNLUDUR.
 
-Blank lines MAY be added to improve readability and to indicate related
-blocks of code.
+Okunabilirliği artırmak ve ilişkili kod bloklarını vurgulamak için boş satırlar
+BIRAKILMASI MÜMKÜNDÜR.
 
-There MUST NOT be more than one statement per line.
+Bir satıda birden fazla ifade OLMAMASI ZORUNLUDUR.
 
-### 2.4. Indenting
+### 2.4. Girintileme
 
-Code MUST use an indent of 4 spaces, and MUST NOT use tabs for indenting.
+Kod girintileri için 4 boşluk KULLANILMASI ve sekme karakteri KULLANILMAMASI
+ZORUNLUDUR.
 
-> N.b.: Using only spaces, and not mixing spaces with tabs, helps to avoid
-> problems with diffs, patches, history, and annotations. The use of spaces
-> also makes it easy to insert fine-grained sub-indentation for inter-line
-> alignment.
+> Önemli.: Sadece boşluk kullanmak ve boşlukları sekmelerle karıştırmamak
+> diff'ler, yamalar, tarihçe ve açıklamalar ile ilgili sorunları azaltmaya
+> yardımcı olur. Boşluk kullanılması satırlar arası girintileme için ince
+> ayarlı alt girinti eklemeyi kolaylaştırır.
 
-### 2.5. Keywords and True/False/Null
+### 2.5. Anahtar Kelimeler ve True/False/Null
 
-PHP [keywords] MUST be in lower case.
+PHP [anahtar kelimeleri][keywords]nin küçük harf OLMASI ZORUNLUDUR.
 
-The PHP constants `true`, `false`, and `null` MUST be in lower case.
+`true`, `false`, ve `null` PHP sabitlerinin küçük harf OLMASI ZORUNLUDUR.
 
 [keywords]: http://php.net/manual/en/reserved.keywords.php
 
-## 3. Namespace and Use Declarations
+## 3. Namespace ve Use Tanımları
 
-When present, there MUST be one blank line after the `namespace` declaration.
+Var olduğunda `namespace` tanımından sonra boş bir satır OLMASI ZORUNLUDUR.
 
-When present, all `use` declarations MUST go after the `namespace`
-declaration.
+Var olduklarında tüm `use` tanımlarının `namespace` tanımından sonra GELMELERİ
+ZORUNLUDUR.
 
-There MUST be one `use` keyword per declaration.
+Her `use` kelimesinin sadece bir tanım için KULLANILMASI ZORUNLUDUR.
 
-There MUST be one blank line after the `use` block.
+`use` bloğundan sonra boş bir satır OLMASI ZORUNLUDUR.
 
-For example:
+Örneğin:
 
 ```php
 <?php
@@ -157,21 +176,21 @@ use FooClass;
 use BarClass as Bar;
 use OtherVendor\OtherPackage\BazClass;
 
-// ... additional PHP code ...
+// ... ek PHP kodu ...
 
 ```
 
-## 4. Classes, Properties, and Methods
+## 4. Sınıflar, Özellikler ve Metodlar
 
-The term "class" refers to all classes, interfaces, and traits.
+"class" terimi tüm sınıflar, arayüzler ve trait'leri kapsar.
 
-### 4.1. Extends and Implements
+### 4.1. Extends ve Implements
 
-The `extends` and `implements` keywords MUST be declared on the same line as
-the class name.
+`extends` ve `implements` anahtar kelimelerinin sınıf adı ile satırda OLMASI
+ZORUNLUDUR.
 
-The opening brace for the class MUST go on its own line; the closing brace
-for the class MUST go on the next line after the body.
+Sınıfın açılış süslü parantezinin kendine ait satırda OLMASI ZORUNLUDUR; kapanış
+süslü parantezinin içerikten hemen sonraki satırda OLMASI ZORUNLUDUR.
 
 ```php
 <?php
@@ -187,9 +206,9 @@ class ClassName extends ParentClass implements \ArrayAccess, \Countable
 }
 ```
 
-Lists of `implements` MAY be split across multiple lines, where each
-subsequent line is indented once. When doing so, the first item in the list
-MUST be on the next line, and there MUST be only one interface per line.
+`implements` listelerini, her bir bir seviye girintilenmiş birden fazla satıra
+BÖLMEK MÜMKÜNDÜR. Bunu yaparken listenin ilk öğesinin sonraki satırda başlaması,
+ve her satırda sadece bir arayüz OLMASI ZORUNLUDUR.
 
 ```php
 <?php
@@ -208,18 +227,18 @@ class ClassName extends ParentClass implements
 }
 ```
 
-### 4.2. Properties
+### 4.2. Özellikler
 
-Visibility MUST be declared on all properties.
+Tüm özellikler için görünürlük TANIMLANMASI ZORUNLUDUR.
 
-The `var` keyword MUST NOT be used to declare a property.
+Özellik tanımlamak için `var` anahtar kelimesinin KULLANILMAMASI ZORUNLUDUR.
 
-There MUST NOT be more than one property declared per statement.
+Bir ifadede birden fazla özellik tanımlaması OLMAMASI ZORUNLUDUR.
 
-Property names SHOULD NOT be prefixed with a single underscore to indicate
-protected or private visibility.
+Özellik isimleri öncesinde korumalı veya özel durumunu belirtmek için alt çizgi
+KULLANILMAMASI ÖNERİLİR.
 
-A property declaration looks like the following.
+Bir özellik tanımlaması aşağıdaki gibi görünür.
 
 ```php
 <?php
@@ -231,20 +250,21 @@ class ClassName
 }
 ```
 
-### 4.3. Methods
+### 4.3. Metotlar
 
-Visibility MUST be declared on all methods.
+Tüm metotlarda görünürlük TANIMLANMASI ZORUNLUDUR.
 
-Method names SHOULD NOT be prefixed with a single underscore to indicate
-protected or private visibility.
+Metot isimleri öncesinde korumalı veya özel durumunu belirtmek için alt çizgi
+KULLANILMAMASI ÖNERİLİR.
 
-Method names MUST NOT be declared with a space after the method name. The
-opening brace MUST go on its own line, and the closing brace MUST go on the
-next line following the body. There MUST NOT be a space after the opening
-parenthesis, and there MUST NOT be a space before the closing parenthesis.
+Metot isimleri tanımlanırken metot ismi sonrasında boşluk OLMAMASI ZORUNLUDUR.
+Açılış süslü parantezinin kendi satırında OLMASI ZORUNLUDUR, kapanış süslü
+parantezinin içerikten sonraki satıda OLMASI ZORULUDUR. Açılış parantezinden
+sonra boşluk OLMAMASI ZORUNLUDUR, kapanış parantezinden önce boşluk OLMAMASI DA
+ZORUNLUDUR.
 
-A method declaration looks like the following. Note the placement of
-parentheses, commas, spaces, and braces:
+Bir metot tanımı aşağıdaki gibi görünür. Parantezlerin, virgüllerin, boşlukların
+ve süslü parantezlerin konumlandırmasına dikkat edin:
 
 ```php
 <?php
@@ -254,18 +274,18 @@ class ClassName
 {
     public function fooBarBaz($arg1, &$arg2, $arg3 = [])
     {
-        // method body
+        // metot gövdesi
     }
 }
 ```
 
-### 4.4. Method Arguments
+### 4.4. Methot Argümanları
 
-In the argument list, there MUST NOT be a space before each comma, and there
-MUST be one space after each comma.
+Argüman listesinde virgüllerden önce boşluk OLMAMASI ZORUNLUDUR, virgüllerden
+sonra bir boşluk OLMASI ZORUNLUDUR.
 
-Method arguments with default values MUST go at the end of the argument
-list.
+Varsayılan değeri olan metot argümanlarının argüman listesinin en sonunda yer
+ALMASI ZORUNLUDUR.
 
 ```php
 <?php
@@ -275,18 +295,18 @@ class ClassName
 {
     public function foo($arg1, &$arg2, $arg3 = [])
     {
-        // method body
+        // methot gövdesi
     }
 }
 ```
 
-Argument lists MAY be split across multiple lines, where each subsequent line
-is indented once. When doing so, the first item in the list MUST be on the
-next line, and there MUST be only one argument per line.
+Argüman listesinin her biri bir defa girintilenmiş birden fazla satıra BÖLÜNMESİ
+MÜMKÜNDÜR. Bu yapılırken argüman listesindeki ilk öğenin sonraki satırda OLMASI,
+ve her satırda bir argüman OLMASI ZORUNLUDUR.
 
-When the argument list is split across multiple lines, the closing parenthesis
-and opening brace MUST be placed together on their own line with one space
-between them.
+Argüman listesi birden fazla satıra bölündüğünde kapanış parantezi ve açılış
+süslü parantezi aralarında bir boşluk olacak şekilde kendilerine ait bir satırda
+OLMALARI ZORUNLUDUR.
 
 ```php
 <?php
@@ -299,18 +319,17 @@ class ClassName
         &$arg2,
         array $arg3 = []
     ) {
-        // method body
+        // metot gövdesi
     }
 }
 ```
 
-### 4.5. `abstract`, `final`, and `static`
+### 4.5. `abstract`, `final`, ve `static`
 
-When present, the `abstract` and `final` declarations MUST precede the
-visibility declaration.
+`abstract` ve `final` tanımlamaları bulunduğunda görünürlük tanımlarından önce
+gelmeleri ZORUNLUDUR. 
 
-When present, the `static` declaration MUST come after the visibility
-declaration.
+`static` tanımı bulunduğunda görünürlük tanımından sonra gelmesi ZORUNLUDUR.
 
 ```php
 <?php
@@ -324,18 +343,18 @@ abstract class ClassName
 
     final public static function bar()
     {
-        // method body
+        // metot gövdesi
     }
 }
 ```
 
-### 4.6. Method and Function Calls
+### 4.6. Methot ve Fonksiyon Çağrıları
 
-When making a method or function call, there MUST NOT be a space between the
-method or function name and the opening parenthesis, there MUST NOT be a space
-after the opening parenthesis, and there MUST NOT be a space before the
-closing parenthesis. In the argument list, there MUST NOT be a space before
-each comma, and there MUST be one space after each comma.
+Metot veya fonksiyon çağrısı yapıldığında metot veya fonksiyon adı ile açılış
+parantezi arasında boşluk OLMAMASI ZORUNLUDUR, açılış parantezinden sonra ve
+kapanış parantezinden önce boşluk olmaması ZORUNLUDUR. Argüman listesinde
+virgüllerden önce boşluk olmaması, virgüllerden sonra bir boşluk OLMASI
+ZORUNLUDUR.
 
 ```php
 <?php
@@ -344,9 +363,9 @@ $foo->bar($arg1);
 Foo::bar($arg2, $arg3);
 ```
 
-Argument lists MAY be split across multiple lines, where each subsequent line
-is indented once. When doing so, the first item in the list MUST be on the
-next line, and there MUST be only one argument per line.
+Argüman listesinin her biri bir defa girintilenmiş birden fazla satıra BÖLÜNMESİ
+MÜMKÜNDÜR. Bunu yaparken listedeki ilk öğenin sonraki satıra gelmesi ve her
+satırda yalnızca bir argüman OLMASI ZORUNLUDUR.
 
 ```php
 <?php
@@ -357,152 +376,151 @@ $foo->bar(
 );
 ```
 
-## 5. Control Structures
+## 5. Kontrol Yapıları
 
-The general style rules for control structures are as follows:
+Kontrol yapıları için genel stil kuralları aşağıdaki gibidir:
 
-- There MUST be one space after the control structure keyword
-- There MUST NOT be a space after the opening parenthesis
-- There MUST NOT be a space before the closing parenthesis
-- There MUST be one space between the closing parenthesis and the opening
-  brace
-- The structure body MUST be indented once
-- The closing brace MUST be on the next line after the body
+- Kontrol yapısı kelimesinden sonra bir boşluk OLMASI ZORUNLUDUR.
+- Açılış parantezinden sonra boşluk OLMAMASI ZORUNLUDUR.
+- Kapanış parantezinden önce boşluk OLMAMASI ZORUNLUDUR.
+- Kapanış parantezi ve açılış süslü parantezi arasında bir boşluk OLMASI
+  ZORUNLUDUR.
+- Yapı gövdesinin bir defa GİRİNTİLENMESİ ZORUNLUDUR.
+- Kapanış süslü parantezinin içerikten sonraki satırda OLMASI ZORUNLUDUR.
 
-The body of each structure MUST be enclosed by braces. This standardizes how
-the structures look, and reduces the likelihood of introducing errors as new
-lines get added to the body.
-
+Her yapının gövdesi süslü parantezler içerisinde eolmalıdır. Bu yapıların
+görünümünü standartlaştırır, ve içeriğe yeni satırlar eklendiğinde hata ile
+karşılaşma olasılığını azaltır
 ### 5.1. `if`, `elseif`, `else`
 
-An `if` structure looks like the following. Note the placement of parentheses,
-spaces, and braces; and that `else` and `elseif` are on the same line as the
-closing brace from the earlier body.
+Bir `if` yapısı aşağıdaki gibi görünür. Parantezlerin, boşlukların, süslü
+parantezlerin yerleşimlerine, `else` ve `elseif` kelimelerinin önceki gövdesinin
+kapanış süslü parantezi ile aynı satırda olmasına dikkat edin.
 
 ```php
 <?php
 if ($expr1) {
-    // if body
+    // if gövdesi
 } elseif ($expr2) {
-    // elseif body
+    // elseif gövdesi
 } else {
-    // else body;
+    // else gövdesi;
 }
 ```
 
-The keyword `elseif` SHOULD be used instead of `else if` so that all control
-keywords look like single words.
+`else if` yerine `elseif` kelimesinin KULLANILMASI ÖNERİLİR, böylece tüm anahtar
+kelimeler tek kelime gibi görüncektir.
 
 ### 5.2. `switch`, `case`
 
-A `switch` structure looks like the following. Note the placement of
-parentheses, spaces, and braces. The `case` statement MUST be indented once
-from `switch`, and the `break` keyword (or other terminating keyword) MUST be
-indented at the same level as the `case` body. There MUST be a comment such as
-`// no break` when fall-through is intentional in a non-empty `case` body.
+Bir `switch` yapısı aşağıdaki gibi görünür. Parantezlerin, boşlukların ve süslü
+parantezlerin yerleşimlerine dikkat edin. `case` ifadesinin `switch`e göre bir
+defa girintilenmesi, `break` anahtar kelimesinin (veya diğer sonlandırma
+kelimesinin) `case` gövdesi ile aynı seviyede OLMASI ZORUNLUDUR. Boş olmayan bir
+`case` ifadesi sonrasında bir sonraki ifadeye düşme bilinçli olarak yapıldıysa
+`// no break` gibi bir yorum satırı OLMASI ZORUNLUDUR.
 
 ```php
 <?php
 switch ($expr) {
     case 0:
-        echo 'First case, with a break';
+        echo 'break içeren ilk seçenek';
         break;
     case 1:
-        echo 'Second case, which falls through';
+        echo 'sonrakine geçiş yapan ikinci seçenek';
         // no break
     case 2:
     case 3:
     case 4:
-        echo 'Third case, return instead of break';
+        echo 'break değil return içeren üçüncü seçenek';
         return;
     default:
-        echo 'Default case';
+        echo 'Varsayılan seçenek';
         break;
 }
 ```
 
 ### 5.3. `while`, `do while`
 
-A `while` statement looks like the following. Note the placement of
-parentheses, spaces, and braces.
+Bir `while` ifadesi aşağıdaki gibi gözükür. Parantezlerin, boşlukların ve süslü
+parantezlerin konumlarına dikkat edin.
 
 ```php
 <?php
 while ($expr) {
-    // structure body
+    // yapı gövdesi
 }
 ```
 
-Similarly, a `do while` statement looks like the following. Note the placement
-of parentheses, spaces, and braces.
+Benzer şekilde bir `do while` ifadesi de aşağıdaki gibi görünür. Parantezlerin,
+boşlukların ve süslü parantezlerin konumlarına dikkat edin.
 
 ```php
 <?php
 do {
-    // structure body;
+    // yapı gövdesi
 } while ($expr);
 ```
 
 ### 5.4. `for`
 
-A `for` statement looks like the following. Note the placement of parentheses,
-spaces, and braces.
+Bir `for` ifadesi aşağıdaki gibi görünür. Parantezlerin, boşlukların ve süslü
+parantezlerin konumlarına dikkat edin.
 
 ```php
 <?php
 for ($i = 0; $i < 10; $i++) {
-    // for body
+    // for gövdesi
 }
 ```
 
 ### 5.5. `foreach`
 
-A `foreach` statement looks like the following. Note the placement of
-parentheses, spaces, and braces.
+Bir `foreach` ifadesi aşağıdaki gibi görünür. Parantezlerin, boşlukların ve
+süslü parantezlerin konumlarına dikkat edin.
 
 ```php
 <?php
 foreach ($iterable as $key => $value) {
-    // foreach body
+    // foreach gövdesi
 }
 ```
 
 ### 5.6. `try`, `catch`
 
-A `try catch` block looks like the following. Note the placement of
-parentheses, spaces, and braces.
+Bir `try catch` ifadesi aşağıdaki gibi görünür. Parantezlerin, boşlukların ve
+süslü parantezlerin konumlarına dikkat edin.
 
 ```php
 <?php
 try {
-    // try body
+    // try gövdesi
 } catch (FirstExceptionType $e) {
-    // catch body
+    // catch gövdesi
 } catch (OtherExceptionType $e) {
-    // catch body
+    // catch gövdesi
 }
 ```
 
-## 6. Closures
+## 6. Closure'lar
 
-Closures MUST be declared with a space after the `function` keyword, and a
-space before and after the `use` keyword.
+Closure'ların `function` anahtar kelimesinden sonra bir boşluk, `use`
+kelimesinden önce ve sonra bir boşluk bırakılarak TANIMLANMASI ZORUNLUDUR.
 
-The opening brace MUST go on the same line, and the closing brace MUST go on
-the next line following the body.
+Açılış süslü parantezinin aynı satır, kapanış süslü parantezinin gövdeden sonraki
+satırda OLMASI ZORUNLUDUR.
 
-There MUST NOT be a space after the opening parenthesis of the argument list
-or variable list, and there MUST NOT be a space before the closing parenthesis
-of the argument list or variable list.
+Argüman listesi veya değişken listesinin açılış paranezinden sonra ve kapanış
+parantezinden önce boşluk OLMAMASI ZORUNLUDUR. 
 
-In the argument list and variable list, there MUST NOT be a space before each
-comma, and there MUST be one space after each comma.
+Argüman listesi ve değişken listesinde virgüllerden önce boşluk OLMAMASI,
+virgüllerden sonra boşluk OLMASI ZORUNLUDUR.
 
-Closure arguments with default values MUST go at the end of the argument
-list.
+Varsayılan değeri olan Closure argümanlarının argüman listesinin en sonunda yer
+ALMASI ZORUNLUDUR.
 
-A closure declaration looks like the following. Note the placement of
-parentheses, commas, spaces, and braces:
+Bir closure tanımlaması aşağıdaki gibi görünür. Parantezlerin, boşlukların ve
+süslü parantezlerin konumlarına dikkat edin.
 
 ```php
 <?php
@@ -515,17 +533,16 @@ $closureWithArgsAndVars = function ($arg1, $arg2) use ($var1, $var2) {
 };
 ```
 
-Argument lists and variable lists MAY be split across multiple lines, where
-each subsequent line is indented once. When doing so, the first item in the
-list MUST be on the next line, and there MUST be only one argument or variable
-per line.
+Argüman listesi ve değişken listesinin her biri birer girintili birden fazla
+satıra BÖLÜNMESİ MÜMKÜNDÜR.Bu yapılırken listedeki ilk öğenin sonraki satırda
+OLMASI ve her satırda bir argüman veya değişken OLMASI ZORUNLUDUR.
 
-When the ending list (whether of arguments or variables) is split across
-multiple lines, the closing parenthesis and opening brace MUST be placed
-together on their own line with one space between them.
+Bitiş listesi (ister argüman ister değişken olsun) birden çok satıra
+bölündüğünde, kapanış parantezi ve açılış süslü parantezinin aralarında bir
+boşluk olacak şekilde kendi satırlarına YERLEŞTİRİLMELERİ ZORUNLUDUR.
 
-The following are examples of closures with and without argument lists and
-variable lists split across multiple lines.
+Aşağıdakiler argüman ve değişken listesi var ve var olmaksızın birden fazla
+satıra bölünmesinin örnekleridir.
 
 ```php
 <?php
@@ -534,7 +551,7 @@ $longArgs_noVars = function (
     $longerArgument,
     $muchLongerArgument
 ) {
-    // body
+    // gövde
 };
 
 $noArgs_longVars = function () use (
@@ -542,7 +559,7 @@ $noArgs_longVars = function () use (
     $longerVar2,
     $muchLongerVar3
 ) {
-    // body
+    // gövde
 };
 
 $longArgs_longVars = function (
@@ -554,7 +571,7 @@ $longArgs_longVars = function (
     $longerVar2,
     $muchLongerVar3
 ) {
-    // body
+    // gövde
 };
 
 $longArgs_shortVars = function (
@@ -562,7 +579,7 @@ $longArgs_shortVars = function (
     $longerArgument,
     $muchLongerArgument
 ) use ($var1) {
-    // body
+    // gövde
 };
 
 $shortArgs_longVars = function ($arg) use (
@@ -570,52 +587,53 @@ $shortArgs_longVars = function ($arg) use (
     $longerVar2,
     $muchLongerVar3
 ) {
-    // body
+    // gövde
 };
 ```
 
-Note that the formatting rules also apply when the closure is used directly
-in a function or method call as an argument.
+Biçimlendirme kurallarının, closure doğrudan bir işlev veya yöntem çağrısında
+değişken olarak doğrudan kullanıldığında da geçerli olduğunu unutmayın.
 
 ```php
 <?php
 $foo->bar(
     $arg1,
     function ($arg2) use ($var1) {
-        // body
+        // gövde
     },
     $arg3
 );
 ```
 
-## 7. Conclusion
+## 7. Sonuç
 
-There are many elements of style and practice intentionally omitted by this
-guide. These include but are not limited to:
+Bu kılavuzda kasıtlı olarak atlanan birçok stil ve uygulama öğesi vardır.
+Bunlar şunları içerir ancak bunlarla sınırlı değildir:
 
-- Declaration of global variables and global constants
+- Global değişkenler ve global sabitlerin tanımlanması
 
-- Declaration of functions
+- Fonksiyonların tanımlanması
 
-- Operators and assignment
+- Operatör ve atamalar
 
-- Inter-line alignment
+- Satır içi hizalama
 
-- Comments and documentation blocks
+- Yorumlar ve dokümantasyon blokları
 
-- Class name prefixes and suffixes
+- Sınıf ismi ön ekleri ve son ekleri
 
-- Best practices
+- En iyi uygulamalar
 
-Future recommendations MAY revise and extend this guide to address those or
-other elements of style and practice.
+Gelecekteki tavsiyeler, bunlar veya diğer stil ve uygulama öğelerini ele almak
+için bu kılavuzu gözden geçirmesi ve genişletmesi MÜMKÜNDÜR.
 
-## Appendix A. Survey
+## Ek A. Anket
 
-In writing this style guide, the group took a survey of member projects to
-determine common practices.  The survey is retained herein for posterity.
+Grup, bu stil kılavuzunu yazarken ortak uygulamaları belirlemek için üye
+projeler arasında bir anket yaptı. Anket, gelecek nesiller için burada
+saklanmaktadır.
 
-### A.1. Survey Data
+### A.1. Anketi Verisi
 
     url,http://www.horde.org/apps/horde/docs/CODING_STANDARDS,http://pear.php.net/manual/en/standards.php,http://solarphp.com/manual/appendix-standards.style,http://framework.zend.com/manual/en/coding-standard.html,https://symfony.com/doc/2.0/contributing/code/standards.html,http://www.ppi.io/docs/coding-standards.html,https://github.com/ezsystems/ezp-next/wiki/codingstandards,http://book.cakephp.org/2.0/en/contributing/cakephp-coding-conventions.html,https://github.com/UnionOfRAD/lithium/wiki/Spec%3A-Coding,http://drupal.org/coding-standards,http://code.google.com/p/sabredav/,http://area51.phpbb.com/docs/31x/coding-guidelines.html,https://docs.google.com/a/zikula.org/document/edit?authkey=CPCU0Us&hgd=1&id=1fcqb93Sn-hR9c0mkN6m_tyWnmEvoswKBtSc0tKkZmJA,http://www.chisimba.com,n/a,https://github.com/Respect/project-info/blob/master/coding-standards-sample.php,n/a,Object Calisthenics for PHP,http://doc.nette.org/en/coding-standard,http://flow3.typo3.org,https://github.com/propelorm/Propel2/wiki/Coding-Standards,http://developer.joomla.org/coding-standards.html
     voting,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,no,no,no,?,yes,no,yes
@@ -641,7 +659,9 @@ determine common practices.  The survey is retained herein for posterity.
     blank_line_after_php,no,no,no,no,yes,no,no,no,no,yes,yes,no,no,yes,?,yes,yes,no,yes,no,yes,no
     class_method_control_brace,next/next/same,next/next/same,next/next/same,next/next/same,next/next/same,same/same/same,next/next/next,same/same/same,same/same/same,same/same/same,same/same/same,next/next/next,next/next/same,next/same/same,next/next/next,next/next/same,next/next/same,next/next/same,next/next/same,same/same/same,next/next/same,next/next/next
 
-### A.2. Survey Legend
+### A.2. Anket lejantı
+
+Anket lejantı Türkçe'ye çevrilmemiş. Destekte bulunmak isterseniz çeviriye katkıda bulunabilirsiniz.
 
 `indent_type`:
 The type of indenting. `tab` = "Use a tab", `2` or `4` = "number of spaces"
@@ -706,7 +726,7 @@ Is there a blank line after the opening PHP tag?
 `class_method_control_brace`:
 A summary of what line the opening braces go on for classes, methods, and control structures.
 
-### A.3. Survey Results
+### A.3. Anket Sonuçları
 
     indent_type:
         tab: 7
