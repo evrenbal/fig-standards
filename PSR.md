@@ -1,4 +1,4 @@
-# Tercüme Hakkında
+# Çeviri Hakkında
 
 Resmi olmayan bu çeviri php-fig standartları için Türkçe kaynak oluşturmak adına
 gönüllülük esaslı hazırlanmıştır. Çeviri kaynaklı hatalar olabileceği veya
@@ -18,7 +18,7 @@ Ayrıca yine [PSR İş Akışı Tüzüğü][workflow]nde belirtildiği üzere, b
 
 | No  | Başlık                               | Devam Ettirenler               |
 |:---:|--------------------------------------|--------------------------------|
-| 1   | Temel Kodalama Standartı             | _vacant_                       |
+| 1   | [Temel Kodalama Standartı][psr1]     | _vacant_                       |
 | 3   | Logger Interface                     | Jordi Boggiano                 |
 | 4   | Autoloading Standard                 | _vacant_                       |
 | 6   | Caching Interface                    | Larry Garfield                 |
@@ -54,15 +54,15 @@ Ayrıca yine [PSR İş Akışı Tüzüğü][workflow]nde belirtildiği üzere, b
 
 | No | Başlık                               |     |
 |:---:|-------------------------------------|-----|
-| 0   | Autoloading Standard                |     |
+| 0   | [Otomatik yükleme standartı][psr0]  |     |
 | 2   | Coding Style Guide                  |     |
 
 ## Nümerik Dizin
 
 | No | Başlık                               | Editör(ler) / Devam Ettirenler | Durum                |
 |:---:|--------------------------------------|--------------------------------|----------------------|
-| 0   | Autoloading Standard                 |                                | Kullanımdan Kalktı   |
-| 1   | Basic Coding Standard                | _vacant_                       | Kabul Edildi         |
+| 0   | [Otomatik yükleme standartı][psr0]   |                                | Kullanımdan Kalktı   |
+| 1   | [Temel Kodalama Standartı][psr1]     | _vacant_                       | Kabul Edildi         |
 | 2   | Coding Style Guide                   |                                | Kullanımdan Kalktı   |
 | 3   | Logger Interface                     | Jordi Boggiano                 | Kabul Edildi         |
 | 4   | Autoloading Standard                 | _vacant_                       | Kabul Edildi         |
@@ -87,3 +87,26 @@ Ayrıca yine [PSR İş Akışı Tüzüğü][workflow]nde belirtildiği üzere, b
 
 [workflow]: https://github.com/php-fig/fig-standards/blob/master/bylaws/002-psr-workflow.md
 [figstandards]: https://github.com/php-fig/
+[psr0]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-0.md
+[psr1]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
+[psr2]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
+[psr3]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
+[psr4]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-4-autoloader-meta.md
+[psr5]: https://github.com/evrenbal/fig-standards/blob/master/proposed/phpdoc.md
+[psr6]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-6-cache.md
+[psr7]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-7-http-message.md
+[psr8]: https://github.com/evrenbal/fig-standards/blob/master/proposed/psr-8-hug/
+[psr9]: https://github.com/evrenbal/fig-standards/blob/master/proposed/security-disclosure-publication.md
+[psr10]: https://github.com/evrenbal/fig-standards/blob/master/proposed/security-reporting-process.md
+[psr11]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-11-container.md
+[psr12]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-12-extended-coding-style-guide.md
+[psr13]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-13-links.md
+[psr14]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-14-event-dispatcher.md
+[psr15]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-15-request-handlers.md
+[psr16]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-16-simple-cache.md
+[psr17]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-17-http-factory.md
+[psr18]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-18-http-client.md
+[psr19]: https://github.com/evrenbal/fig-standards/blob/master/proposed/phpdoc-tags.md
+[psr20]: https://github.com/evrenbal/fig-standards/blob/master/accepted/PSR-20-clock.md
+[psr21]: https://github.com/evrenbal/fig-standards/blob/master/proposed/internationalization.md
+[psr22]: https://github.com/evrenbal/fig-standards/blob/master/proposed/tracing.md
