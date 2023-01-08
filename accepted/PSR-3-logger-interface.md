@@ -1,143 +1,159 @@
-Logger Interface
-================
+# Loglayıcı Arayüzü
 
-This document describes a common interface for logging libraries.
+Bu doküman loglama kütüphaneleri için ortak bir arayüz tanımlar.
 
-The main goal is to allow libraries to receive a `Psr\Log\LoggerInterface`
-object and write logs to it in a simple and universal way. Frameworks
-and CMSs that have custom needs MAY extend the interface for their own
-purpose, but SHOULD remain compatible with this document. This ensures
-that the third-party libraries an application uses can write to the
-centralized application logs.
+Ana hedef kütüphanelerin bir `Psr\Log\LoggerInterface` nesnesi kabul ederek
+logları basit ve evrensel bir yöntemle ona yazmalarıdır. Frameworkler veya
+içerik yönetim sistmeleri bu arayüzü kendi ihtiyaçlarına göre genişletebilirler
+fakat bu dokümanla uyumlu kalmaları gerekir. Bu bir uygulamanın kullandığı
+üçüncü parti kütüphanelerin merkezileştirilmiş uygulama kayıtlarına
+yazabilmesini garanti eder.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in [RFC 2119][].
+Bu dokümandaki `uygulayıcı` loglamaya ilişkin bir kütüphane veya framework
+içerisinde `LoggerInterface` uygulayan kişiyi tanımlar. Loglayıcının
+kullanıcıları `kullanıcı` olarak tanımlanacaktır.
 
-The word `implementor` in this document is to be interpreted as someone
-implementing the `LoggerInterface` in a log-related library or framework.
-Users of loggers are referred to as `user`.
+## 0. Çeviri
 
-[RFC 2119]: http://tools.ietf.org/html/rfc2119
+### 0.1 Çeviri Hakkında
+Resmi olmayan bu çeviri php-fig standartları için Türkçe kaynak oluşturmak adına
+gönüllülük esaslı hazırlanmıştır. Çeviri kaynaklı hatalar olabileceği veya
+çeviri yapıldıktan sonra orijinal dosyanın değiştirilmiş olabileceği dikkate
+alınmalıdır. Orijinal dildeki dokümanlar için php-fig tarafından yönetilen
+[orijinal depo][figstandards] incelenmelidir.
 
-## 1. Specification
+[figstandards]: https://github.com/php-fig/
 
-### 1.1 Basics
+### 0.2 Terimler ve Tarifler
+* Log İngilizce bir terimdir ve Türkçeye kayıt, günlük vb. tanımlarla
+  çevrilmiştir. Bu terimi kod yazma seviyesinde kullanan teknik kişiler genelde
+  orijinal `log` haliyle kullandığı için metin içerisinde tercüme edilmeyecektir.
 
-- The `LoggerInterface` exposes eight methods to write logs to the eight
-  [RFC 5424][] levels (debug, info, notice, warning, error, critical, alert,
-  emergency).
+## 1. Şartname
 
-- A ninth method, `log`, accepts a log level as the first argument. Calling this
-  method with one of the log level constants MUST have the same result as
-  calling the level-specific method. Calling this method with a level not
-  defined by this specification MUST throw a `Psr\Log\InvalidArgumentException`
-  if the implementation does not know about the level. Users SHOULD NOT use a
-  custom level without knowing for sure the current implementation supports it.
+### 1.1 Temeller
 
-[RFC 5424]: http://tools.ietf.org/html/rfc5424
+- `LoggerInterface` sekiz farklı seviyedeki kayıtları [RFC 5424][] (debug, info,
+  notice, warning, error, critical, alert, emergency) yazmak için sekiz farklı
+  metot sağlar.
 
-### 1.2 Message
+- Dokuzuncu metod olan `log`, ilk parametre olarak log seviyesini alır. Bu metod
+  log seviyelerinden herhangi biri ile çağrıldığında o seviyeye özel metodu
+  çağırmakla aynı sonuca ulaşılmalıdır. Metodu bu şartnamede belirtilmeyen bir
+  seviye ile çağırmak bir `Psr\Log\InvalidArgumentException` istisnası
+  fırlatmalıdır. Eğer uygulama bir seviye ile ilgili bilgi sahibi değilse
+  kullanıcılar mevcut uygulamanın bunu desteklediğinden kesinlikle emin olmadan
+  özel bir seviye kullanmamalıdır.
 
-- Every method accepts a string as the message, or an object with a
-  `__toString()` method. Implementors MAY have special handling for the passed
-  objects. If that is not the case, implementors MUST cast it to a string.
+[rfc 5424]: http://tools.ietf.org/html/rfc5424
 
-- The message MAY contain placeholders which implementors MAY replace with
-  values from the context array.
+### 1.2 Mesaj
 
-  Placeholder names MUST correspond to keys in the context array.
+- Her metod string tipinde, veya `__toString()` metoduna sahip bir nesne kabul
+  eder. Uygulayıcılar gönderilen nesne ile özel işlemler yapabilir, fakat eğer
+  böyle bir ihtiyaç yoksa uygulayıcı nesneyi bir stringe dönüştürmelidir.
 
-  Placeholder names MUST be delimited with a single opening brace `{` and
-  a single closing brace `}`. There MUST NOT be any whitespace between the
-  delimiters and the placeholder name.
+- Mesaj uygulayıcıların `context` dizisindeki değerlerle değiştirebileceği yer
+  tutucular içerebilir.
 
-  Placeholder names SHOULD be composed only of the characters `A-Z`, `a-z`,
-  `0-9`, underscore `_`, and period `.`. The use of other characters is
-  reserved for future modifications of the placeholders specification.
+  Yer tutucu isimleri `context` dizisindeki anahtarlarla uyumlu olmalıdır.
 
-  Implementors MAY use placeholders to implement various escaping strategies
-  and translate logs for display. Users SHOULD NOT pre-escape placeholder
-  values since they can not know in which context the data will be displayed.
+  Yer tutucu isimleri süslü parantez `{` ve ters süslü parantez `}` ile
+  sınırlandırılır. Sınırlandırıcılar ve yer tutucu isimleri arasında boşluk
+  olmamalıdır.
 
-  The following is an example implementation of placeholder interpolation
-  provided for reference purposes only:
+  Yer tutucu isimlerinin `A-Z`, `a-z`, `0-9`, alt çizgi `_`, ve noktadan `.`
+  oluşması önerilir. Diğer karakterlerin kullanımı yer tutucu kuralları ile
+  ilgili gelecekte yapılacak değişiklikler için saklı tutulmuştur.
+
+  Uygulayıcılar yer tutucuları çeşitli temizlik stratejileri uygulamak ve loglar
+  görüntülenirken tercüme edilmesi amacıyla kullanabilir. Kullanıcılar yer
+  tutuculara ayrıca temizleme işlemi uygulamamalıdır çünkü hangi bağlamda
+  gösterileceğini bilemezler.
+
+  Aşağıda, yer tutucu enterpolasyonu için yalnızca referans amacıyla sağlanan
+  örnek bir uygulama yer almaktadır:
 
   ```php
   <?php
 
   /**
-   * Interpolates context values into the message placeholders.
+   * Bağlam değerlerini mesaj yer tutucuları içine yerleştirir
    */
   function interpolate($message, array $context = array())
   {
-      // build a replacement array with braces around the context keys
+      // bağlam anahtarlarının etrafına süslü parantezler koyarak bir değiştirme
+      // dizisi oluştur
       $replace = array();
       foreach ($context as $key => $val) {
-          // check that the value can be cast to string
+          // Değerin stringe dönüştürülebileceğini doğrula
           if (!is_array($val) && (!is_object($val) || method_exists($val, '__toString'))) {
               $replace['{' . $key . '}'] = $val;
           }
       }
 
-      // interpolate replacement values into the message and return
+      // Değiştirme değerlerini mesajın içerisine yerleştir ve geri döndür
       return strtr($message, $replace);
   }
 
-  // a message with brace-delimited placeholder names
+  // süslü parantez ile sınırlandıırlmış yer tutucu isimleri içeren bir mesaj
   $message = "User {username} created";
 
-  // a context array of placeholder names => replacement values
+  // yer tutucu isimleri => değiştirilecek değerler içeren bir bağlam dizisi
   $context = array('username' => 'bolivar');
 
-  // echoes "User bolivar created"
+  //  "User bolivar created" metnini ekrana yazar.
   echo interpolate($message, $context);
   ```
 
-### 1.3 Context
+### 1.3 Bağlam
 
-- Every method accepts an array as context data. This is meant to hold any
-  extraneous information that does not fit well in a string. The array can
-  contain anything. Implementors MUST ensure they treat context data with
-  as much lenience as possible. A given value in the context MUST NOT throw
-  an exception nor raise any php error, warning or notice.
+- Her metod bağlam verisi olarak bir dizi kabul eder. Bu, bir strgine tam olarak
+  uymayan herhangi bir yabancı bilgiyi tutmak içindir. Dizi her şeyi içerebilir.
+  Uygulayıcılar, bağlam verilerini mümkün olduğunca müsmahalı bir şekilde ele
+  aldıklarından emin OLMALIDIR. Bağlamdaki belirli bir değer, bir istisna
+  FIRLATMAMALI veya herhangi bir php hatası, uyarı veya not OLUŞTURMAMALIDIR.
 
-- If an `Exception` object is passed in the context data, it MUST be in the
-  `'exception'` key. Logging exceptions is a common pattern and this allows
-  implementors to extract a stack trace from the exception when the log
-  backend supports it. Implementors MUST still verify that the `'exception'`
-  key is actually an `Exception` before using it as such, as it MAY contain
-  anything.
+- Bağlam dizisi içerisine bir `Exception` nesnesi gönderildiyse bu,
+  `'exception'` anahtarı içinde OLMALIDIR. İstisna durumları loglamak yaygın bir
+   modeldir ve log backendi desteklediğinde uygulayıcılara istisna durumundaki
+   yığın ağacını görme imkanı sağlar. Uygulayıcılar `'exception'` anahtarının
+   bir `Exception` olarak kullanmadan önce öyle olduğundan emin OLMALIDIR.
 
-### 1.4 Helper classes and interfaces
+### 1.4 Yardımcı Sınıflar ve Arayüzler
 
-- The `Psr\Log\AbstractLogger` class lets you implement the `LoggerInterface`
-  very easily by extending it and implementing the generic `log` method.
-  The other eight methods are forwarding the message and context to it.
+- `Psr\Log\AbstractLogger` sınıfı `LoggerInterface`
+  arayüzünü genişletip jenerik `log` metodunu dahil ederek (implement) kolayca
+  uyarlamanıza olanak taır. Diğer sekiz metod mesajı ve bağlamı ona iletir.
 
-- Similarly, using the `Psr\Log\LoggerTrait` only requires you to
-  implement the generic `log` method. Note that since traits can not implement
-  interfaces, in this case you still have to implement `LoggerInterface`.
+- Benzer şekilde `Psr\Log\LoggerTrait` sadece jenerik `log` metodunu
+  oluşturmanızı gerektirir. Trait'ler arayüzleri dahil edemeyecekleri
+  (implement) için hala `LoggerInterface` ayrıca dahil edilmelidir.
 
-- The `Psr\Log\NullLogger` is provided together with the interface. It MAY be
-  used by users of the interface to provide a fall-back "black hole"
-  implementation if no logger is given to them. However, conditional logging
-  may be a better approach if context data creation is expensive.
+- `Psr\Log\NullLogger` arayüz ile birlikte sağlanır. Kendilerine herhangi bir
+  kaydedici verilmediği takdirde, arayüz kullanıcıları tarafından bir son çare
+  "kara delik" uygulaması sağlamak için KULLANILABİLİR. Ancak, bağlam verisi
+  oluşturma masraflı olması durumunda koşullu loglama daha iyi bir yaklaşım
+  olabilir.
 
-- The `Psr\Log\LoggerAwareInterface` only contains a
-  `setLogger(LoggerInterface $logger)` method and can be used by frameworks to
-  auto-wire arbitrary instances with a logger.
+- `Psr\Log\LoggerAwareInterface` sadece
+  `setLogger(LoggerInterface $logger)` metodu içerir ve frameworkler tarafından
+  isteğe bağlı oluşturulan örnekleri bir loglayıcı ile otomatik bağlamak için
+  kullanılır.
 
-- The `Psr\Log\LoggerAwareTrait` trait can be used to implement the equivalent
-  interface easily in any class. It gives you access to `$this->logger`.
+- `Psr\Log\LoggerAwareTrait` eşdeğer arayüzü bir sınıf içerisinde kolayca dahil
+  etmek (implement) için kullanılır. Bu `$this->logger` şeklinde kullanıma erişim
+  sağlar.
 
-- The `Psr\Log\LogLevel` class holds constants for the eight log levels.
+- `Psr\Log\LogLevel` sınıfı sekiz log seviyesi için sabitleri saklar.
 
-## 2. Package
+## 2. Paket
 
-The interfaces and classes described as well as relevant exception classes
-and a test suite to verify your implementation are provided as part of the
-[psr/log](https://packagist.org/packages/psr/log) package.
+Tanımlanan arabirimler ve sınıfların yanı sıra ilgili istisna sınıfları ve
+uygulamanızı doğrulamak için bir test paketi [psr/log] paketinin bir parçası
+olarak sağlanır.
+
+[psr/log]: https://packagist.org/packages/psr/log
 
 ## 3. `Psr\Log\LoggerInterface`
 
@@ -147,24 +163,23 @@ and a test suite to verify your implementation are provided as part of the
 namespace Psr\Log;
 
 /**
- * Describes a logger instance.
+ * Bir logger örneğini tanımlar
  *
- * The message MUST be a string or object implementing __toString().
+ * Mesaj bir string ya da __toString() uyarlaması olan bir nesne olmalıdır.
  *
- * The message MAY contain placeholders in the form: {foo} where foo
- * will be replaced by the context data in key "foo".
+ * Mesaj şu formata uygun yer tutucular içerebilir: {foo}
+ * bağlam verisi içindeki "foo" anahtarlı veriyle değiştirilir.
  *
- * The context array can contain arbitrary data, the only assumption that
- * can be made by implementors is that if an Exception instance is given
- * to produce a stack trace, it MUST be in a key named "exception".
+ * Bağlam dizisi rasgele veriler içerebilir, uygulayıcı tarafından yapılabilecek
+ * tek varsayım eğer bir yığın ağacı oluşturmak için bir Exception örneği
+ * verilecekse bu "exception" anahtarı ile verilmiş OLMALIDIR.
  *
- * See https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
- * for the full interface specification.
+ * Arayüz şartnamesinin tamamını görmek için See https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md inceleyiniz
  */
 interface LoggerInterface
 {
     /**
-     * System is unusable.
+     * System kullanılamaz
      *
      * @param string $message
      * @param array $context
@@ -173,10 +188,10 @@ interface LoggerInterface
     public function emergency($message, array $context = array());
 
     /**
-     * Action must be taken immediately.
+     * Hemen eyleme geçilmelidir.
      *
-     * Example: Entire website down, database unavailable, etc. This should
-     * trigger the SMS alerts and wake you up.
+     * Örneğin: Tüm web sitesi çöktü, veritabanı ulaşılamaz vb.
+     * Bu SMS alarmını etkin hale getirip sizi uyandırmalı
      *
      * @param string $message
      * @param array $context
@@ -185,9 +200,9 @@ interface LoggerInterface
     public function alert($message, array $context = array());
 
     /**
-     * Critical conditions.
+     * Kritik durumlar
      *
-     * Example: Application component unavailable, unexpected exception.
+     * Örneğin: Uygulama bileşeni mevcut değil, beklenmeyen istisna
      *
      * @param string $message
      * @param array $context
@@ -196,8 +211,8 @@ interface LoggerInterface
     public function critical($message, array $context = array());
 
     /**
-     * Runtime errors that do not require immediate action but should typically
-     * be logged and monitored.
+     * Çalışma zamanı hataları genellikle anında eylem gerektirmez fakat genel
+     * olarak loglanıp izlenmeleri gerekir.
      *
      * @param string $message
      * @param array $context
@@ -206,10 +221,10 @@ interface LoggerInterface
     public function error($message, array $context = array());
 
     /**
-     * Exceptional occurrences that are not errors.
+     * Hata olmayan ististna durumlar
      *
-     * Example: Use of deprecated APIs, poor use of an API, undesirable things
-     * that are not necessarily wrong.
+     * Örneğin: Kullanım ömrü dolmuş bir API kullanılması, bir API'nin yanlış
+     * kullanımı, yanlış olması gerekmeyen ama istenmeyen şeyler.
      *
      * @param string $message
      * @param array $context
@@ -218,7 +233,7 @@ interface LoggerInterface
     public function warning($message, array $context = array());
 
     /**
-     * Normal but significant events.
+     * Normal ama önemli olaylar
      *
      * @param string $message
      * @param array $context
@@ -227,9 +242,9 @@ interface LoggerInterface
     public function notice($message, array $context = array());
 
     /**
-     * Interesting events.
+     * İlgilenilen olaylar
      *
-     * Example: User logs in, SQL logs.
+     * Örneğin: Kullanıcı giriş yaptı, SQL logları
      *
      * @param string $message
      * @param array $context
@@ -238,7 +253,7 @@ interface LoggerInterface
     public function info($message, array $context = array());
 
     /**
-     * Detailed debug information.
+     * Detaylı hata ayıklama kayıtları
      *
      * @param string $message
      * @param array $context
@@ -247,7 +262,7 @@ interface LoggerInterface
     public function debug($message, array $context = array());
 
     /**
-     * Logs with an arbitrary level.
+     * Herhangi bir seviyedeki loglar
      *
      * @param mixed $level
      * @param string $message
@@ -266,12 +281,12 @@ interface LoggerInterface
 namespace Psr\Log;
 
 /**
- * Describes a logger-aware instance.
+ * Logger Aware örneğini tanımlar.
  */
 interface LoggerAwareInterface
 {
     /**
-     * Sets a logger instance on the object.
+     * Nesne üzerinde bir logger örneği tanımlar
      *
      * @param LoggerInterface $logger
      * @return void
@@ -288,7 +303,7 @@ interface LoggerAwareInterface
 namespace Psr\Log;
 
 /**
- * Describes log levels.
+ * Log seviyelerini tanımlar
  */
 class LogLevel
 {

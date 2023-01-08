@@ -1,44 +1,85 @@
-# Logger Meta Document
+# Loglayıcı Meta Dokümanı
 
-## 1. Summary
+## 0. Çeviri
 
-The logger interface defines a common interface for logging system messages from an application or library.
+### 0.1 Çeviri Hakkında
+Resmi olmayan bu çeviri php-fig standartları için Türkçe kaynak oluşturmak adına
+gönüllülük esaslı hazırlanmıştır. Çeviri kaynaklı hatalar olabileceği veya
+çeviri yapıldıktan sonra orijinal dosyanın değiştirilmiş olabileceği dikkate
+alınmalıdır. Orijinal dildeki dokümanlar için php-fig tarafından yönetilen
+[orijinal depo][figstandards] incelenmelidir.
 
-This metadocument was written post-hoc, as PSR-3 was originally passed before meta-documents were standard practice.
+[figstandards]: https://github.com/php-fig/
 
-## 2. Design Decisions
+### 0.2 Terimler ve Tarifler
+* Log İngilizce bir terimdir ve Türkçeye kayıt, günlük vb. tanımlarla
+  çevrilmiştir. Bu terimi kod yazma seviyesinde kullanan teknik kişiler genelde
+  orijinal `log` haliyle kullandığı için metin içerisinde tercüme edilmeyecektir.
 
-### Static log messages
+## 1. Özet
 
-It is the intent of this specification that the message passed to a logging method always be a static value.  Any context-specific variability (such as a username, timestamp, or other information) should be provided via the `$context` array only, and the string should use a placeholder to reference it.
+Loglama arayüzü, bir uygulama ya da kütüphaneden gelen sistem mesajlarının
+tutulması için ortak bir arayüz tanımlar.
 
-The intent of this design is twofold.  One, the message is then readily available to translation systems to create localized versions of log messages.  Two, context-specific data may contain user input, and thus requires escaping.  That escaping will be necessarily different if the log message is stored in a database for later rendering in HTML, serialized to JSON, serialized to a syslog message string, etc.  It is the responsibility of the logging implementation to ensure that `$context` data that is shown to the user is appropriately escaped. 
+PSR-3 standartı meta-dokümanları standart uygulama haline gelmeden önce
+yayınlandığı için bu meta dokümanı sonradan yazılmıştır.
 
-## 3. People
+## 2. Tasarım Kararları
 
-### 3.1 Editor(s)
+### Statik Log Mesajları
+
+Bu şartnamenin amacı bir loglama metoduna iletilen mesajın her zaman statik bir
+değer olmasıdr. Herhangi bir bağlama özgü değişkenlikler (örneğin kullanıcı adı,
+zaman damgası veya diğer bilgiler ) sadece `$context` dizisi ile sağlanmalı ve
+metinde bunlara atıfta bulunan yer tutucular bulunmalıdır.
+
+Bu tasarımın amacı iki yönlüdür. Birincisi, mesaj daha sonra günlük mesajlarının
+yerelleştirilmiş sürümlerini oluşturmak için çeviri sistemleri tarafından
+kolayca kullanılabilir. İkincisi, bağlama özgü veriler, kullanıcı girişi
+içerebilir ve bu nedenle temizlik yapılmasını gerektirir. Günlük iletisi daha
+sonra HTML'de işlenmek üzere bir veritabanında saklanıyorsa, JSON'a seri hale
+getirildiyse, bir syslog mesaj dizisine serileştirildiyse vb. temizlik buna göre
+farklılaşacaktır. Kullanıcıya gösterilen "$context" verilerinin uygun şekilde
+temizlenmesi loglama uygulamasının sorumluluğundadır.
+
+## 3. İnsanlar
+
+### 3.1 Düzenleyici(ler)
 
 * Jordi Boggiano
 
-## 4. Votes
+### 3.2 Türkçe'ye Çeviri
 
-[Approval vote](https://groups.google.com/g/php-fig/c/d0yPC7jWPAE/m/rhexAfz2T_8J)
+* [Evren Bal][@benevrenbal]
 
-## 5. Errata
+[@benevrenbal]: https://www.linkedin.com/in/evrenbal
+## 4. Oylama
 
-### 5.1 Type additions
+[Kabul oyu](https://groups.google.com/g/php-fig/c/d0yPC7jWPAE/m/rhexAfz2T_8J)
 
-The 2.0 release of the `psr/log` package includes scalar parameter types.  The 3.0 release of the package includes return types.  This structure leverages PHP 7.2 covariance support to allow for a gradual upgrade process, but requires PHP 8.0 for type compatibility.
+## 5. Yazım Hataları
 
-Implementers MAY add return types to their own packages at their discretion, provided that:
+### 5.1 Tip Eklemeleri
 
-* the return types match those in the 3.0 package.
-* the implementation specifies a minimum PHP version of 8.0.0 or later.
+"psr/log" paketinin 2.0 sürümü, skaler parametre tiplerini içerir. Paketin 3.0
+sürümü dönüş türlerini içerir. Bu yapı, kademeli bir yükseltme işlemine izin
+vermek için PHP 7.2 kovaryans desteğinden yararlanır, ancak tür uyumluluğu için
+PHP 8.0 gerektirir.
 
-Implementers MAY add parameter types to their own packages in a new major release, either at the same time as adding return types or in a subsequent release, provided that:
+Uygulayıcılar, aşağıdakilerin sağlanması koşuluyla, kendi takdirine bağlı olarak
+kendi paketlerine dönüş tipleri EKLEYEBİLİR:
 
-* the parameter types match those in the 2.0 package.
-* the implementation specifies a minimum PHP version of 8.0.0 or later.
-* the implementation depends on `"psr/log": "^2.0 || ^3.0"` so as to exclude the untyped 1.0 version.
+* dönüş türleri 3.0 paketindekilerle eşleşmelidir.
+* uygulama, PHP 8.0.0 veya sonraki bir sürümü asgari sürüm olarak belirtmelidir.
 
-Implementers are encouraged but not required to transition their packages toward the 3.0 version of the package at their earliest convenience.
+Uygulayıcılar, yeni bir ana sürümde, dönüş tipleri ile birlikte veya ayrı bir
+sürüm olarak parametre tiplerini de EKLEYEBİLİRLER. Bunun için aşağıdaki
+şartların da sağlanması gerekir:
+
+* parametre tipleri 2.0 paketindekilerle eşleşmelidir.
+* uygulama, PHP 8.0.0 veya sonraki bir sürümü asgari sürüm olarak belirtmelidir.
+* uygulama `"psr/log": "^2.0 || ^3.0"` sürümlerine bağlı olmalı, tip içermeyen
+  1.0 sürümünü dışlamalıdır.
+
+Uygulayıcılar, paketlerini mümkün olan en kısa sürede paketin 3.0 sürümüne
+geçirmeleri için teşvik edilse de bunun yapılması gerekli değildir.
