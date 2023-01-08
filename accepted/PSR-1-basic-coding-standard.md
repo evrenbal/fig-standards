@@ -1,118 +1,147 @@
-# Basic Coding Standard
+# Temel Kodlama Standartı
 
-This section of the standard comprises what should be considered the standard
-coding elements that are required to ensure a high level of technical
-interoperability between shared PHP code.
+Standartın bu bölümü, paylaşılan PHP kodları arasında yüksek teknik uyumluluk
+sağlamak için gerekli standart kodlama öğeleri olarak düşünülmesi gerekenlerin
+neler olduğunu kapsar.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in [RFC 2119].
+## 0. Çeviri
+### 0.1 Çeviri Hakkında
+Resmi olmayan bu çeviri php-fig standartları için Türkçe kaynak oluşturmak adına
+gönüllülük esaslı hazırlanmıştır. Çeviri kaynaklı hatalar olabileceği veya
+çeviri yapıldıktan sonra orijinal dosyanın değiştirilmiş olabileceği dikkate
+alınmalıdır. Orijinal dildeki dokümanlar için php-fig tarafından yönetilen
+[orijinal depo][figstandards] incelenmelidir.
 
-[RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
-[PSR-0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
-[PSR-4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
+[figstandards]: https://github.com/php-fig/
 
-## 1. Overview
+### 0.1 Terim ve tarifler
+Aşağıda yer alan terimler metin içerisinde tercüme edilmeden orijinal halleri
+ile bırakılmıştır. Bu terimlerin ne olduğu bilinmiyorsa ayrıca araştırılması
+ÖNERİLİR.
 
-- Files MUST use only `<?php` and `<?=` tags.
+- `Class` metin içerisinde sınıf olarak da kullanılmıştır.
+- `Function` metin içerisinde fonksiyon olarak da kullanılmıştır.
+- `Constant` metin içerisinde sabit olarak da kullanılmıştır.
+- `camelCase` ilk kelimenin tüm harfleri küçük, varsa ikinci ve sonraki
+kelimelerin yalnızca ilk harfleri büyük, sonraki harfleri küçük şekilde yazılan,
+içerisinde boşluk ya da ayraç kullanılmayan kelimeler.
+- `PascalCase` Tüm kelimelerin ilk harfleri büyük, sonraki harfleri küçük
+şekilde yazılan, içerisinde boşluk ya da ayraç kullanılmayan kelimeler.
+- `StudlyCaps` bazı harfleri belirli kurallar çerçevesinde büyük harf
+kullanılarak yazılan, içerisinde boşluk ya da ayraç bulunmayan kelimeler.
+- `snake_case`, `under_score` tüm harfleri küçük, ayraç olarak alt çizgi
+kullanılan kelimeler. 
+- `Namespace` benzer amaca hizmet eden özellikler, sınıflar ve fonksiyonların
+bir çatı altında toplanarak bu çatıya verilen isimdir.
+- `Vendor` sağlayıcı, üretici, kodu yazan kişi ya da organizasyonun benzersiz
+adı
 
-- Files MUST use only UTF-8 without BOM for PHP code.
+## 1. Genel Bakış
 
-- Files SHOULD *either* declare symbols (classes, functions, constants, etc.)
-  *or* cause side-effects (e.g. generate output, change .ini settings, etc.)
-  but SHOULD NOT do both.
+- Dosyalarda sadece `<?php` ve `<?=` etiketlerini kullanılması ZORUNLUDUR.
 
-- Namespaces and classes MUST follow an "autoloading" PSR: [[PSR-0], [PSR-4]].
+- Dosyalarda, PHP kodu için sadece BOM içermeyen UTF-8 karakter kodlaması
+kullanılması ZORULUDUR.
 
-- Class names MUST be declared in `StudlyCaps`.
+- Dosyaların ya *sadece* sembolleri (sınıf, fonksiyon, sabit, vb.) tanımlaması
+*ya da* sadece yan etki (e.g. çıktı üretmek, .ini ayarlarını değiştirmek, vb.)
+oluşturması, her ikisini birlikte yapmaması ÖNERİLİR.
 
-- Class constants MUST be declared in all upper case with underscore separators.
+- Namespace ve sınıfların bir "otomatik yükleme" PSR'ına [[PSR-0], [PSR-4]]
+uygun olmaları ZORUNLUDUR.
 
-- Method names MUST be declared in `camelCase`.
+- Sınıf isimlerinin `StudlyCaps` şeklinde tanımlanması ZORUNLUDUR.
 
-## 2. Files
+- Sınıf sabitlerinin tamamı büyük harf ve gerekirse alt çizgiyle ayrılarak
+tanımlanması ZORUNLUDUR.
 
-### 2.1. PHP Tags
+- Metot isimlerinin `camelCase` şeklinde tanımlanması ZORUNLUDUR.
 
-PHP code MUST use the long `<?php ?>` tags or the short-echo `<?= ?>` tags; it
-MUST NOT use the other tag variations.
+## 2. Dosyalar
 
-### 2.2. Character Encoding
+### 2.1. PHP Etiketleri
 
-PHP code MUST use only UTF-8 without BOM.
+Php kodunda uzun `<?php ?>` etiketleri veya kısa-echo `<?= ?>` etiketlerinin
+kullanılması, başka etiket varyasyonlarının kullanılmaması ZORUNLUDUR.
 
-### 2.3. Side Effects
+### 2.2. Karakter Kodlaması
 
-A file SHOULD declare new symbols (classes, functions, constants,
-etc.) and cause no other side effects, or it SHOULD execute logic with side
-effects, but SHOULD NOT do both.
+PHP kodunın BOM içermeden UTF-8 kullanması ZORUNLUDUR.
 
-The phrase "side effects" means execution of logic not directly related to
-declaring classes, functions, constants, etc., *merely from including the
-file*.
+### 2.3. Yan Etkiler
 
-"Side effects" include but are not limited to: generating output, explicit
-use of `require` or `include`, connecting to external services, modifying ini
-settings, emitting errors or exceptions, modifying global or static variables,
-reading from or writing to a file, and so on.
+Bir dosyanın sadece yeni semboller (sınıflar, fonksiyonlar ve semboller)
+tanımlaması, başka bir yan etkiye sebep olmaması, veya sadece yan etki
+işlevine sahip olması, ikisini aynı anda yapmaması ÖNERİLİR.
 
-The following is an example of a file with both declarations and side effects;
-i.e, an example of what to avoid:
+"Yan Etkiler", sadece dosyanın dahil edilmesi ile, sınıf, fonksiyon, sabit vb.
+tanımlaması yapmadan doğrudan mantıksal ifadelerin çalıştırılmasını ifade eder.
+
+"Yan etkiler" bunlarla sınırlı olmamak üzere şunları kapsar: çıktı oluşturma,
+"require" veya "include"in kullanımı, harici hizmetlere bağlanma, ini ayarlarını
+ değiştirme, hatalar veya istisnalar oluşturma, genel veya statik değişkenleri
+ değiştirme, bir dosyadan okuma veya dosyaya yazma vb.
+
+Aşağıdaki örnek, hem tanımlama hem yan etki içeren bir dosyadır; yani
+kaçınılması gereken bir örnektir:
 
 ```php
 <?php
-// side effect: change ini settings
+// yan etki: ini ayarlarını değiştir
 ini_set('error_reporting', E_ALL);
 
-// side effect: loads a file
+// yan etki: bir dosya yükle
 include "file.php";
 
-// side effect: generates output
+// yan etki: çıktı oluştur
 echo "<html>\n";
 
-// declaration
+// tanımlama
 function foo()
 {
-    // function body
+    // fonksiyon içeriği
 }
 ```
 
-The following example is of a file that contains declarations without side
-effects; i.e., an example of what to emulate:
+Aşağıdak dosya ise yan etki olmadan tanımlama yapılan, yani uygulanması
+gereken iyi bir örnektir
 
 ```php
 <?php
-// declaration
+// tanımlama
 function foo()
 {
-    // function body
+    // fonksiyon içeriği
 }
 
-// conditional declaration is *not* a side effect
+// koşulsak tanımlamalar yan etki *değildir*
 if (! function_exists('bar')) {
     function bar()
     {
-        // function body
+        // fonksiyon içeriği
     }
 }
 ```
 
-## 3. Namespace and Class Names
+## 3. Namespace ve Sınıf İsimleri
 
-Namespaces and classes MUST follow an "autoloading" PSR: [[PSR-0], [PSR-4]].
+Namespace'ler ve sınıflar bir "otomatik yükleme" standartına, PSR: [[PSR-0],
+[PSR-4]] uymalıdır.
 
-This means each class is in a file by itself, and is in a namespace of at
-least one level: a top-level vendor name.
+Her sınıfın kendisine ait bir dosya içerisinde olması ve en azından birinci
+seviye derinlikte bir namespace içerisinde: sağlayıcı adından oluşan üst seviye
+namespace'de olması ZORUNLUDUR.
 
-Class names MUST be declared in `StudlyCaps`.
+Sınıf isimlerinin `StudlyCaps` olarak tanımlanması ZORUNLUDUR.
 
-Code written for PHP 5.3 and after MUST use formal namespaces.
+PHP 5.3 ve sonrasında yazılan kodların resmi namespace tanımını kullanması
+ZORUNLUDUR.
 
-For example:
+Örneğin
 
 ```php
 <?php
-// PHP 5.3 and later:
+// PHP 5.3 ve sonrası
 namespace Vendor\Model;
 
 class Foo
@@ -120,25 +149,27 @@ class Foo
 }
 ```
 
-Code written for 5.2.x and before SHOULD use the pseudo-namespacing convention
-of `Vendor_` prefixes on class names.
+PHP 5.2.x ve öncesi için yazılan kodların takma-namespace  düzenini kullanarak
+sınıf isimlerine `Vendor_` ön ekini eklemeleri ÖNERİLİR.
 
 ```php
 <?php
-// PHP 5.2.x and earlier:
+// PHP 5.2.x ve öncesinde
 class Vendor_Model_Foo
 {
 }
 ```
 
-## 4. Class Constants, Properties, and Methods
+## 4. Sınıf Sabitleri, Özellikleri ve Metotları
 
-The term "class" refers to all classes, interfaces, and traits.
+"Sınıf" terimi, tüm sınıfları, arayüzleri ve özellikleri ifade eder.
 
-### 4.1. Constants
+### 4.1. Sabitler
 
-Class constants MUST be declared in all upper case with underscore separators.
-For example:
+Sınıf sabitleri tamamen büyük harf ve gerektiğinde alt çizgi ayracı kullanılarak
+tanımlanır.
+
+Örneğin;
 
 ```php
 <?php
@@ -151,15 +182,16 @@ class Foo
 }
 ```
 
-### 4.2. Properties
+### 4.2. Özellikler
 
-This guide intentionally avoids any recommendation regarding the use of
-`$StudlyCaps`, `$camelCase`, or `$under_score` property names.
+Bu rehber özellik isimleri için `$StudlyCaps`, `$camelCase`, veya `$under_score`
+seçeneklerinden birini tavsiye etmekten özellikle kaçınır.
 
-Whatever naming convention is used SHOULD be applied consistently within a
-reasonable scope. That scope may be vendor-level, package-level, class-level,
-or method-level.
+Hangi isimlendirme seçeneği kullanılırsa kullanılsın aynı seçeneğin belirli
+kapsam içerisindeki her yerde aynı şekilde kullanılması ÖNERİLİR.
+Bu kapsamın üretici seviyesinde, paket seviyesinde, sınıf seviyesinde ve hatta
+metot seviyesinde olması TERCİHE BAĞLIDIR.
 
-### 4.3. Methods
+### 4.3. Metotlar
 
-Method names MUST be declared in `camelCase()`.
+Metot isimleri `camelCase()` olarak tanımlanmalıdır.

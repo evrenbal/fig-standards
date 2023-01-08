@@ -1,15 +1,29 @@
-# PSR-1 Meta Document
+# PSR-1 Meta Dokümanı
+
+## 0. Çeviri
+### 0.1 Çeviri Hakkında
+Resmi olmayan bu çeviri php-fig standartları için Türkçe kaynak oluşturmak adına
+gönüllülük esaslı hazırlanmıştır. Çeviri kaynaklı hatalar olabileceği veya
+çeviri yapıldıktan sonra orijinal dosyanın değiştirilmiş olabileceği dikkate
+alınmalıdır. Orijinal dildeki dokümanlar için php-fig tarafından yönetilen
+[orijinal depo][figstandards] incelenmelidir.
+
+[figstandards]: https://github.com/php-fig/
 
 ## 1. Summary
 
-This section of the standard comprises what should be considered the standard
-coding elements that are required to ensure a high level of technical
-interoperability between shared PHP code. This meta document is added after the
-document was accepted. 
+Standartın bu bölümü, paylaşılan PHP kodları arasında yüksek teknik uyumluluk
+sağlamak için gerekli standart kodlama öğeleri olarak düşünülmesi gerekenlerin
+neler olduğunu kapsar. Bu meta belge, belge kabul edildikten sonra eklenmiştir.
 
-## 2. People
+## 2. Kişiler
 
-### 2.1 Editor
+### 2.1 Editör
 
 * Paul M. Jones
 
+### 2.2 Türkçe Tercüme
+
+* [Evren Bal][@benevrenbal]
+
+[@benevrenbal]: https://www.linkedin.com/in/evrenbal
