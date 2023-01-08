@@ -1,32 +1,40 @@
-Autoloading Standard
-====================
+Otomatik yükleme standartı
+==========================
 
-> **Deprecated** - As of 2014-10-21 PSR-0 has been marked as deprecated. [PSR-4] is now recommended
-as an alternative.
+> **Kullanımdan kalktı** - PSR-0 21.10.2014 tarihi itibarı ile kullanımdan
+kaldırıldı. Artık alternatif olarak [PSR-4] önerilmektedir.
 
 [PSR-4]: https://www.php-fig.org/psr/psr-4/
 
-The following describes the mandatory requirements that must be adhered
-to for autoloader interoperability.
+## 0. Çeviri
+### 0.1 Çeviri Hakkında
+Resmi olmayan bu çeviri php-fig standartları için Türkçe kaynak oluşturmak adına
+gönüllülük esaslı hazırlanmıştır. Çeviri kaynaklı hatalar olabileceği veya
+çeviri yapıldıktan sonra orijinal dosyanın değiştirilmiş olabileceği dikkate
+alınmalıdır. Orijinal dildeki dokümanlar için php-fig tarafından yönetilen
+[orijinal depo][figstandards] incelenmelidir.
 
-Mandatory
----------
+[figstandards]: https://github.com/php-fig/
 
-* A fully-qualified namespace and class must have the following
-  structure `\<Vendor Name>\(<Namespace>\)*<Class Name>`
-* Each namespace must have a top-level namespace ("Vendor Name").
-* Each namespace can have as many sub-namespaces as it wishes.
-* Each namespace separator is converted to a `DIRECTORY_SEPARATOR` when
-  loading from the file system.
-* Each `_` character in the CLASS NAME is converted to a
-  `DIRECTORY_SEPARATOR`. The `_` character has no special meaning in the
-  namespace.
-* The fully-qualified namespace and class are suffixed with `.php` when
-  loading from the file system.
-* Alphabetic characters in vendor names, namespaces, and class names may
-  be of any combination of lower case and upper case.
+Aşağıda, otomatik yükleyici birlikte çalışabilirliği için uyulması gereken
+zorunlu gereksinimler açıklanmaktadır.
 
-Examples
+Zorunlu
+-------
+
+* Şu yapıda tam teşekkülü bir alan adı (namespace) ve sınıf adı (class) `\<Tedarikçi Adı>\(<Namespace>\)*<Class Name>`
+* Alan adları üst-seviye bir alan adına sahip olmalıdır. ("Tedarikçi Adı").
+* Her alan adı istediği kadar alt alan adına sahip olabilir.
+* Dosya sisteminden yüklenirken her alan adı ayracı bir `DIRECTORY_SEPARATOR`'e
+  dönüştürülür.
+* SINIF ADINDAKİ her `_` karakteri bir `DIRECTORY_SEPARATOR`'e dönüştürülür.
+  `_` karakterinin alan adı içerisinde özel bir anlamı yoktur.
+* Dosya sisteminden yüklenirken tam teşekküllü alan adı ve sınıf adına `.php`
+  eklenir.
+* Tedarikçi adı, alan adı ve sınıflardaki alfabetik karakterler büyük ve küçük
+  harflerin herhangi bir kombinasyonundan oluşabilir.
+
+Örnekler
 --------
 
 * `\Doctrine\Common\IsolatedClassLoader` => `/path/to/project/lib/vendor/Doctrine/Common/IsolatedClassLoader.php`
@@ -40,16 +48,17 @@ Underscores in Namespaces and Class Names
 * `\namespace\package\Class_Name` => `/path/to/project/lib/vendor/namespace/package/Class/Name.php`
 * `\namespace\package_name\Class_Name` => `/path/to/project/lib/vendor/namespace/package_name/Class/Name.php`
 
-The standards we set here should be the lowest common denominator for
-painless autoloader interoperability. You can test that you are
-following these standards by utilizing this sample SplClassLoader
-implementation which is able to load PHP 5.3 classes.
 
-Example Implementation
-----------------------
+Burada belirlediğimiz standartlar zahmetsiz bir otomatik yükleyici birlikte
+çalışabilirliği için en düşük ortak payda olmalıdır. PHP 5.3 sınıflarını
+yükleyebilen bu örnek SplClassLoader uygulamasını kullanarak bu standartlara
+uyup uymadığınızı test edebilirsiniz.
 
-Below is an example function to simply demonstrate how the above
-proposed standards are autoloaded.
+Örnek Uygulama
+--------------
+
+Aşağıdaki örnek uygulama yukarıdaki standartların basitçe nasıl otomatik
+yüklendiğini göstermektedir.
 
 ```php
 <?php
@@ -71,13 +80,13 @@ function autoload($className)
 spl_autoload_register('autoload');
 ```
 
-SplClassLoader Implementation
------------------------------
+SplClassLoader Uygulaması
+-------------------------
 
-The following gist is a sample SplClassLoader implementation that can
-load your classes if you follow the autoloader interoperability
-standards proposed above. It is the current recommended way to load PHP
-5.3 classes that follow these standards.
+Aşağıdaki gist yukarıda teklif edilen otomatik yükleyici birlikte çalışabilirlik
+standartlarını uyguladığınızda sınıflarınızı yükleyebilecek olan örnek bir
+SplClassLoader uygulamasıdır. Bu standartlara uyan PHP 5.3 sınıflarını yüklemek
+için mevcut tavsiye edilen uygulamadır.
 
 * [http://gist.github.com/221634](http://gist.github.com/221634)
 
