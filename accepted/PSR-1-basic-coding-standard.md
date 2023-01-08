@@ -14,7 +14,7 @@ alınmalıdır. Orijinal dildeki dokümanlar için php-fig tarafından yönetile
 
 [figstandards]: https://github.com/php-fig/
 
-### 0.1 Terim ve tarifler
+### 0.1 Çeviri Notları
 Aşağıda yer alan terimler metin içerisinde tercüme edilmeden orijinal halleri
 ile bırakılmıştır. Bu terimlerin ne olduğu bilinmiyorsa ayrıca araştırılması
 ÖNERİLİR.
