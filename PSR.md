@@ -19,7 +19,7 @@ Ayrıca yine [PSR İş Akışı Tüzüğü][workflow]nde belirtildiği üzere, b
 | No  | Başlık                               | Devam Ettirenler               |
 |:---:|--------------------------------------|--------------------------------|
 | 1   | [Temel Kodalama Standartı][psr1]     | _vacant_                       |
-| 3   | Logger Interface                     | Jordi Boggiano                 |
+| 3   | [Loglayıcı Arayüzü][psr3]            | Jordi Boggiano                 |
 | 4   | Autoloading Standard                 | _vacant_                       |
 | 6   | Caching Interface                    | Larry Garfield                 |
 | 7   | HTTP Message Interface               | Matthew Weier O'Phinney        |
@@ -55,7 +55,7 @@ Ayrıca yine [PSR İş Akışı Tüzüğü][workflow]nde belirtildiği üzere, b
 | No | Başlık                               |     |
 |:---:|-------------------------------------|-----|
 | 0   | [Otomatik yükleme standartı][psr0]  |     |
-| 2   | Coding Style Guide                  |     |
+| 2   | [Kodlama Stil Rehberi][psr2]        |     |
 
 ## Nümerik Dizin
 
@@ -63,8 +63,8 @@ Ayrıca yine [PSR İş Akışı Tüzüğü][workflow]nde belirtildiği üzere, b
 |:---:|--------------------------------------|--------------------------------|----------------------|
 | 0   | [Otomatik yükleme standartı][psr0]   |                                | Kullanımdan Kalktı   |
 | 1   | [Temel Kodalama Standartı][psr1]     | _vacant_                       | Kabul Edildi         |
-| 2   | Coding Style Guide                   |                                | Kullanımdan Kalktı   |
-| 3   | Logger Interface                     | Jordi Boggiano                 | Kabul Edildi         |
+| 2   | [Kodlama Stil Rehberi][psr2]         |                                | Kullanımdan Kalktı   |
+| 3   | [Loglayıcı Arayüzü][psr3]            | Jordi Boggiano                 | Kabul Edildi         |
 | 4   | Autoloading Standard                 | _vacant_                       | Kabul Edildi         |
 | 5   | PHPDoc Standard                      | Chuck Burgess                  | Taslak               |
 | 6   | Caching Interface                    | Larry Garfield                 | Kabul Edildi         |
